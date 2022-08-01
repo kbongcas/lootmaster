@@ -1,3 +1,3 @@
 ##  Lootmaster
 
-Node micros-services learning. 
+Node micro-services learning. 
