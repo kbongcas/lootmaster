@@ -1,5 +1,4 @@
 import express, { Request, Response } from 'express'
-import 'express-async-errors'
 import { body}from 'express-validator'
 import { User } from '../models/user';
 import { BadRequestError } from '../errors/bad-request-error';
@@ -25,7 +24,7 @@ router.post('/api/users/signup', [
         const existingUser = await User.findOne( { email });
 
         if(existingUser){
-            throw new BadRequestError('There is an existing user.')
+            throw new BadRequestError('You already have an account.')
         }
 
         const user = User.build({ email, password });

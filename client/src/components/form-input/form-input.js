@@ -10,17 +10,15 @@ const FormInput = ({ label, ...otherProps}) => {
 }
 
 const FormInputContainer = styled.div`
-    position: relative;
-    margin 0 0;
 `
 const FormBlock = styled.input`
     width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
     box-sizing: border-box;
+    padding: 6px;
     border: 2px solid black;
     border-radius: 4px;
     &:focus {
+        padding: 4px;
         border: 4px solid black
     }
 `

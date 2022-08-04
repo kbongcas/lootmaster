@@ -1,15 +1,23 @@
 import styled from 'styled-components'
-import { Routes, Route, Outlet, Link } from 'react-router-dom';
+import { useContext } from 'react';
+import {Outlet, Link } from 'react-router-dom';
 import { Fragment } from 'react';
 import { ReactComponent as PotionLogo } from '../assets/potion.svg'
+import { UserContext } from '../context/user-context';
+                    //{currentUser && <div> Hello {currentUser} </div>}
 
 const Navigation = () => {
+
+    const { currentUser } = useContext(UserContext);
     return (
         <Fragment>
             <NavigationBar>
                 <LogoLink to="/">
                     <Logo className="Logo"/>
                 </LogoLink>
+                <UserName>
+                    { currentUser && <div>Hello Kevin</div> }
+                </UserName>
                 <NavLinkContainer >
                     <NavLink to="/items">
                         Items
@@ -19,6 +27,9 @@ const Navigation = () => {
                     </NavLink>
                     <NavLink to="/signup">
                         Sign up
+                    </NavLink>
+                    <NavLink to="/signin">
+                        Sign in
                     </NavLink>
                 </NavLinkContainer>
             </NavigationBar>
@@ -44,6 +55,17 @@ const LogoLink = styled(Link)`
 `
 
 const Logo = styled(PotionLogo)`
+`
+
+const UserName = styled.div `
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    .div{
+        padding: 10px 15px;
+    }
 `
 
 const NavLinkContainer = styled.div `

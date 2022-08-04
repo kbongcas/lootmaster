@@ -1,10 +1,5 @@
 import styled from "styled-components";
 
-const BUTTON_TYPE_CLASSES = {
-    basic: 'basic',
-    inverted: 'inverted'
-}
-
 const Button = ({ children, buttonType, ...otherProps }) => {
     return <ButtonStyled buttonType={buttonType} >{children}</ButtonStyled>;
 }
@@ -12,8 +7,8 @@ const Button = ({ children, buttonType, ...otherProps }) => {
 
 const ButtonStyled = styled.button`
   min-width: 165px;
-  width: auto;
-  height: 50px;
+  width: 100%;
+  height: 100%;
   letter-spacing: 0.5px;
   line-height: 50px;
   padding: 0 35px 0 35px;
