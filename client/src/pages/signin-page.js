@@ -2,7 +2,9 @@ import { useState } from 'react';
 import Button from '../components/button/button';
 import FormInput from '../components/form-input/form-input';
 import styled from 'styled-components';
-import SignupPage from './signup-page';
+import BasicCard from '../components/cards/basic-card';
+//import { useNavigate } from 'react-router-dom';
+//import { UserContext } from '../context/user-context';
 
 const defaultFormFields = {
     email: '',
@@ -12,30 +14,50 @@ const defaultFormFields = {
 const SignInPage = () => {
 
     const [formFields, setFormFields] = useState(defaultFormFields);
-    const { email, password, confirmPassword } = formFields;
-
-    console.log(formFields);
+    const { email, password } = formFields;
+    const [ errors ] = useState([]);
+    //const { setCurrentUser } = useContext(UserContext);
+    //const navigate = useNavigate();
 
     const handleChange = (event) => {
         const { name, value }  = event.target;
-
         setFormFields({ ...formFields, [name]: value });
+    }
+
+
+    // @TODO: Implement
+    //const onSuccessSignIn = (responseData) => {
+    //    setErrors([]);
+    //    const { email } = responseData;
+    //    setCurrentUser(email);
+    //    navigate("/auth")
+    //    console.log('auth rotuing...');
+    //}
+
+    const onSubmit = async event => {
+        //@TODO: Implement
+        // asdf
     }
 
     return (
         <div>
-            <Card>
-                <CardContents>
-                    <Header>Sign In</Header>
-                    <form onSubmit={() => {}}>
-                        <FormInput label="Email" type="email" required name="email" value={email} onChange={handleChange}/>
-                        <FormInput label="Password" type="password" required name="password" value={password} onChange={handleChange}/>
-                        <ButtonContainer>
-                            <Button type='submit'>Sign In</Button>
-                        </ButtonContainer>
-                    </form>
-                </CardContents>
-            </Card>
+            <BasicCard>
+                <Header>Sign In</Header>
+                <form onSubmit={onSubmit}>
+                    <FormInputContainer>
+                        <FormInput label="Email" type="email" required name="email" value={email} onChange={handleChange} />
+                    </FormInputContainer>
+                    <FormInputContainer>
+                        <FormInput label="Password" type="password" required name="password" value={password} onChange={handleChange} />
+                    </FormInputContainer>
+                    <ButtonContainer>
+                        <Button type='submit'>Sign In</Button>
+                    </ButtonContainer>
+                    <ErrorList>
+                        {errors.length > 0 && (errors.map(err => <li key={err.message}>{err.message}</li>))}
+                    </ErrorList>
+                </form>
+            </BasicCard>
         </div>
     )
 }
@@ -46,23 +68,25 @@ const Header = styled.h1`
     padding-top: 13px;
     text-align: center;
 `
-
-const Card = styled.div`
-    background: whitesmoke;
-    border-radius: 8px;
-    border: 3px solid black;
-    height: 450px;
-    margin: 0 auto 0 auto;
-    width: 329px;
-    padding: 0px 0px 70px 0px;
-
+const FormInputContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    padding: 8px;
 `
-const CardContents = styled.div`
-    padding: 12px 44px;
+
+const ErrorList = styled.ul`
+    list-style-type: none;
+    text-align: center;
+    .li{
+        text-align: center;
+    }
 `
 
 const ButtonContainer = styled.div`
+
     padding: 24px 24px;
 `
+
+
 
 export default SignInPage;

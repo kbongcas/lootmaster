@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { addSyntheticLeadingComment } from "typescript";
 import { Password } from '../services/password';
 
 // An interface to create a new user

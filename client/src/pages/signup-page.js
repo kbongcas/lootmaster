@@ -1,10 +1,11 @@
 import { useContext, useState } from 'react';
 import Button from '../components/button/button';
 import FormInput from '../components/form-input/form-input';
-import signUp from '../utils/auth-utils';
+import { attemptSignUp, getCurrentUser }from '../utils/auth-utils';
 import styled from 'styled-components';
 import { UserContext } from '../context/user-context';
 import { useNavigate } from 'react-router-dom';
+import BasicCard from '../components/cards/basic-card';
 
 const defaultFormFields = {
     email: '',
@@ -21,7 +22,8 @@ const SignupPage = () => {
     const navigate = useNavigate();
 
     const onSuccessSignup = (responseData) => {
-        setCurrentUser('KEVIN');
+        const { email } = responseData;
+        setCurrentUser(email);
         navigate("/auth")
         console.log('auth rotuing...');
     }
@@ -38,7 +40,7 @@ const SignupPage = () => {
         try{
             console.log(email)
             console.log(password)
-            await signUp(email, password, onSuccessSignup);
+            await attemptSignUp(email, password, onSuccessSignup);
         }
         catch (err) {
             setErrors(err.response.data.errors);
@@ -50,25 +52,26 @@ const SignupPage = () => {
 
     return (
         <div>
-            <Card>
-                <CardContents>
-                    <Header>Sign Up</Header>
-                    <form onSubmit={onSubmit}>
-                        <FormInputContainer>
-                            <FormInput label="Email" type="email" required name="email" value={email} onChange={handleChange}/>
-                        </FormInputContainer>
-                        <FormInputContainer>
-                            <FormInput label="Password" type="password" required name="password" value={password} onChange={handleChange}/>
-                        </FormInputContainer>
-                        <ButtonContainer>
-                            <Button type='submit'>Sign Up</Button>
-                        </ButtonContainer>
-                        <ErrorList>
-                            {errors.length > 0 && (errors.map( err => <li key={err.message}>{err.message}</li>))}
-                        </ErrorList>
-                    </form>
-                </CardContents>
-            </Card>
+            <BasicCard>
+                <Header>Sign Up</Header>
+                <form onSubmit={onSubmit}>
+                    <FormInputContainer>
+                        <FormInput label="Display Name" type="text" name="email" />
+                    </FormInputContainer>
+                    <FormInputContainer>
+                        <FormInput label="Email" type="email" required name="email" value={email} onChange={handleChange} />
+                    </FormInputContainer>
+                    <FormInputContainer>
+                        <FormInput label="Password" type="password" required name="password" value={password} onChange={handleChange} />
+                    </FormInputContainer>
+                    <ButtonContainer>
+                        <Button type='submit'>Sign Up</Button>
+                    </ButtonContainer>
+                    <ErrorList>
+                        {errors.length > 0 && (errors.map(err => <li key={err.message}>{err.message}</li>))}
+                    </ErrorList>
+                </form>
+            </BasicCard>
         </div>
     )
 }
@@ -81,25 +84,6 @@ const Header = styled.h1`
     padding-top: 13px;
     text-align: center;
 `
-
-const Card = styled.div`
-    background: whitesmoke;
-    border-radius: 8px;
-    border: 3px solid black;
-    height: 450px;
-    margin: 6rem auto 8.1rem auto;
-    width: 329px;
-
-`
-const CardContents = styled.div`
-    padding: 12px 44px;
-    //display: flex;
-    //flex-direction: column;
-    //justify-content: space-evenly;
-    //background-color: peachpuff;
-
-`
-
 const FormInputContainer = styled.div`
     width: 100%;
     height: 100%;

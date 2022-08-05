@@ -1,5 +1,5 @@
 import express from 'express'
-import { NotFoundError } from '../errors/not-found-error';
+import { NotFoundError } from '@lootmaster/common';
 
 const router = express.Router();
 

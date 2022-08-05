@@ -16,21 +16,19 @@ const Navigation = () => {
                     <Logo className="Logo"/>
                 </LogoLink>
                 <UserName>
-                    { currentUser && <div>Hello Kevin</div> }
+                    { currentUser && <div>Hello {currentUser} </div> }
                 </UserName>
                 <NavLinkContainer >
-                    <NavLink to="/items">
-                        Items
-                    </NavLink>
-                    <NavLink to="/auth">
-                        Auth
-                    </NavLink>
-                    <NavLink to="/signup">
-                        Sign up
-                    </NavLink>
-                    <NavLink to="/signin">
-                        Sign in
-                    </NavLink>
+                    <NavLink to="/items">Items</NavLink>
+                    <NavLink to="/auth">Auth</NavLink>
+                    <>
+                        {!currentUser ?
+                            (<><NavLink to="/signup"> Sign up</NavLink>
+                                <NavLink to="/signin"> Sign in</NavLink></>)
+                            :
+                            <NavLink to="/signin">Sign out</NavLink>
+                        }
+                    </>
                 </NavLinkContainer>
             </NavigationBar>
             <Outlet/>

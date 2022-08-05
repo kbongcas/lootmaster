@@ -10,7 +10,7 @@ import { signUpRouter } from './routes/signup';
 import { notFoundRouter } from './routes/not-found';
 
 // Middleware
-import { errorHandler  } from './middlewares/error-handler';
+import { errorHandler  } from '@lootmaster/common';
 import cookieSession from 'cookie-session';
 
 const app = express();
