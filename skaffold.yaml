@@ -24,4 +24,11 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-
+    - image: kbongcas/lootmaster-items
+      context: items
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .

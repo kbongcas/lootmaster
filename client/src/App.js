@@ -2,7 +2,7 @@ import Home from './routes/home.component'
 import Items from './routes/items.component'
 import Navigation from './routes/navigation.component';
 import Authenticated from './routes/authenticated.component';
-import { Routes, Route, Navigate} from 'react-router-dom'; 
+import { Routes, Route } from 'react-router-dom'; 
 import SignupPage from './pages/signup-page';
 import SignInPage from './pages/signin-page';
 import './App.css';

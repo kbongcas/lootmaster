@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import Button from '../components/button/button';
 import FormInput from '../components/form-input/form-input';
-import { attemptSignUp, getCurrentUser }from '../utils/auth-utils';
+import { attemptSignUp }from '../utils/auth-utils';
 import styled from 'styled-components';
 import { UserContext } from '../context/user-context';
 import { useNavigate } from 'react-router-dom';
